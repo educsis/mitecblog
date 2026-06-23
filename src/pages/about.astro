@@ -1,4 +1,7 @@
 ---
+import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
+
 const pageTitle = "About Me";
 
 const identity = {
@@ -13,25 +16,34 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 const happy = true;
 const finished = true;
 const goal = 3;
+
+const skillColor = "crimson";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width" />
     <title>{pageTitle}</title>
-    <style>
+    <style define:vars={{skillColor, fontWeight, textCase}}>
       h1 {
         color: purple;
         font-size: 4rem;
       }
+      .skill {
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
     </style>
+    <link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+	  >
   </head>
   <body>
-    <a href="/">Home</a>
-    <br />
-    <a href="/about/">About</a>
-    <br />
-    <a href="/blog/">Blog</a>
+    <Navigation />
 
     <h1>My Astro Learning Blog</h1>
     <p>This is where I will post about my journey learning Astro.</p>
@@ -52,12 +64,7 @@ const goal = 3;
     </ul>
     <p>My skills are:</p>
     <ul>
-      {skills.map((skill) => <li>{skill}</li>)}
-    </ul>
-    <ul>
-      <li><a href="/posts/post-1/">Post 1</a></li>
-      <li><a href="/posts/post-2/">Post 2</a></li>
-      <li><a href="/posts/post-3/">Post 3</a></li>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
     </ul>
   </body>
 </html>
