@@ -1,8 +1,5 @@
 ---
-import '../styles/global.css';
-import Navigation from '../components/Navigation.astro';
-
-const pageTitle = "About Me";
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 const identity = {
   firstName: "Sarah",
@@ -20,12 +17,9 @@ const goal = 3;
 const skillColor = "crimson";
 const fontWeight = "bold";
 const textCase = "uppercase";
+
+const pageTitle = "About Me";
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width" />
-    <title>{pageTitle}</title>
     <style define:vars={{skillColor, fontWeight, textCase}}>
       h1 {
         color: purple;
@@ -37,15 +31,7 @@ const textCase = "uppercase";
         text-transform: var(--textCase);
       }
     </style>
-    <link
-		rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-	  >
-  </head>
-  <body>
-    <Navigation />
-
-    <h1>My Astro Learning Blog</h1>
+<BaseLayout pageTitle={pageTitle}>
     <p>This is where I will post about my journey learning Astro.</p>
     <p>Here are a few facts about me:</p>
 
@@ -66,5 +52,4 @@ const textCase = "uppercase";
     <ul>
       {skills.map((skill) => <li class="skill">{skill}</li>)}
     </ul>
-  </body>
-</html>
+</BaseLayout>
